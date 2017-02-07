@@ -1,0 +1,90 @@
+package main.java;
+
+import java.io.Console;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Scanner;
+
+public class IssuesExporter {
+
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        IssuesExporter issuesExporter = new IssuesExporter();
+        issuesExporter.run();
+    }
+
+    private void run() {
+        // TODO Auto-generated method stub
+        /*
+         * Console console = System.console(); if (console == null) {
+         * System.out.println("No Console"); System.exit(1); }
+         * 
+         * String login = console.readLine("Enter your Github Username"); String
+         * password = console.readLine("Enter your Github password");
+         */
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter your Github Username");
+        String login = sc.nextLine();
+        System.out.println("Enter your Github password");
+        String password = sc.nextLine();
+        List<Issue> issuesList = createIssueList();
+        System.out.println(issuesList.size());
+       // System.out.println(issuesList.get(0));
+        writeToFile(issuesList);
+        sc.close();
+    }
+
+    private void writeToFile(List<Issue> issuesList) {
+        // TODO Auto-generated method stub
+        PrintWriter pw = null;
+        File outputFile = new File("./issues.txt");
+        try {
+            if (!outputFile.exists()) {
+                outputFile.createNewFile();
+            }
+            pw = new PrintWriter(new FileWriter(outputFile));
+            for (Issue issue : issuesList) {
+                pw.println(issue.toString());
+            }
+            
+        }catch (Exception e) {
+            System.out.println("Error occured while writing to a file");
+            e.printStackTrace();
+        }finally {
+            if(pw!=null)
+            pw.close();
+        }
+    }
+
+    private List<Issue> createIssueList() {
+        // TODO Auto-generated method stub
+        Issue issue1 = new Issue();
+        
+        /*User user1=new User();
+        user1.setId(123);
+        user1.setLogin("harshini");
+        issue1.setId(123);
+        issue1.setNumber(2);
+        issue1.setState("Closed");
+        issue1.setTitle("Issue1");
+        issue1.setAssignee(user1);
+        issue1.setUser(user1);
+        issue1.setClosedAt(new Date(02-02-2016));
+        issue1.setCreatedAt(new Date(02-03-2017));
+        issue1.setBody("Body");*/
+        
+        
+        Issue issue2 = new Issue();
+        Issue issue3 = new Issue();
+        List<Issue> issuesList = new ArrayList<Issue>();
+        issuesList.add(issue1);
+        issuesList.add(issue2);
+        issuesList.add(issue3);
+        return issuesList;
+    }
+
+}
