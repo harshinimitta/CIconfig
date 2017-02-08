@@ -25,7 +25,7 @@ public class IssuesExporter {
             String password = sc.nextLine();
             List<Issue> issuesList = createIssueList();
             System.out.println(issuesList.size());
-
+            writeToFile(issuesList);
         }
     }
 
