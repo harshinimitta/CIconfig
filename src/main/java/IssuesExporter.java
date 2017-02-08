@@ -18,18 +18,14 @@ public class IssuesExporter {
     private void run() {
         // TODO Auto-generated method stub
 
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter your Github Username");
-        String login = sc.nextLine();
-        System.out.println("Enter your Github password");
-        String password = sc.nextLine();
-        List<Issue> issuesList = createIssueList();
-        System.out.println(issuesList.size());
-        try {
-            writeToFile(issuesList);
-        }
-        finally {
-            sc.close();
+        try (Scanner sc = new Scanner(System.in)) {
+            System.out.println("Enter your Github Username");
+            String login = sc.nextLine();
+            System.out.println("Enter your Github password");
+            String password = sc.nextLine();
+            List<Issue> issuesList = createIssueList();
+            System.out.println(issuesList.size());
+
         }
     }
 
