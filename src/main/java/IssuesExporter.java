@@ -62,24 +62,48 @@ public class IssuesExporter {
 
     private List<Issue> createIssueList() {
         // TODO Auto-generated method stub
-        Issue issue1 = new Issue();
+        Issue issue1 = new Issue();  
+        Issue issue2 = new Issue();
+        Issue issue3 = new Issue();
         
-        /*User user1=new User();
+        User user1=new User();
         user1.setId(123);
         user1.setLogin("harshini");
-        issue1.setId(123);
-        issue1.setNumber(2);
+        
+        User user2=new User();
+        user2.setId(1234);
+        user2.setLogin("mitta");
+        
+        issue1.setId(205607777);
+        issue1.setNumber(3);
         issue1.setState("Closed");
         issue1.setTitle("Issue1");
         issue1.setAssignee(user1);
         issue1.setUser(user1);
-        issue1.setClosedAt(new Date(02-02-2016));
-        issue1.setCreatedAt(new Date(02-03-2017));
-        issue1.setBody("Body");*/
+        issue1.setClosedAt("2017-02-06T14:51:09Z");
+        issue1.setCreatedAt("2017-02-06T14:51:09Z");
+        issue1.setBody("Body");
         
+        issue2.setId(205607558);
+        issue2.setNumber(2);
+        issue2.setState("Open");
+        issue2.setTitle("Issue2");
+        issue2.setAssignee(user1);
+        issue2.setUser(user2);
+        issue2.setClosedAt("2017-02-07T14:51:09Z");
+        issue2.setCreatedAt("2017-02-08T14:51:09Z");
+        issue2.setBody("Body");
         
-        Issue issue2 = new Issue();
-        Issue issue3 = new Issue();
+        issue3.setId(2302895);
+        issue3.setNumber(1);
+        issue3.setState("Open");
+        issue3.setTitle("Issue3");
+        issue3.setAssignee(user2);
+        issue3.setUser(user1);
+        issue3.setClosedAt("2017-01-07T14:51:09Z");
+        issue3.setCreatedAt("2017-12-08T14:51:09Z");
+        issue3.setBody("Body");
+        
         List<Issue> issuesList = new ArrayList<Issue>();
         issuesList.add(issue1);
         issuesList.add(issue2);
