@@ -17,13 +17,7 @@ public class IssuesExporter {
 
     private void run() {
         // TODO Auto-generated method stub
-        /*
-         * Console console = System.console(); if (console == null) {
-         * System.out.println("No Console"); System.exit(1); }
-         * 
-         * String login = console.readLine("Enter your Github Username"); String
-         * password = console.readLine("Enter your Github password");
-         */
+
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter your Github Username");
         String login = sc.nextLine();
@@ -31,9 +25,12 @@ public class IssuesExporter {
         String password = sc.nextLine();
         List<Issue> issuesList = createIssueList();
         System.out.println(issuesList.size());
-        // System.out.println(issuesList.get(0));
-        writeToFile(issuesList);
-        sc.close();
+        try {
+            writeToFile(issuesList);
+        }
+        finally {
+            sc.close();
+        }
     }
 
     private void writeToFile(List<Issue> issuesList) {
