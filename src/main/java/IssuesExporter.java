@@ -1,11 +1,9 @@
 package main.java;
 
-import java.io.Console;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -33,7 +31,7 @@ public class IssuesExporter {
         String password = sc.nextLine();
         List<Issue> issuesList = createIssueList();
         System.out.println(issuesList.size());
-       // System.out.println(issuesList.get(0));
+        // System.out.println(issuesList.get(0));
         writeToFile(issuesList);
         sc.close();
     }
@@ -50,30 +48,33 @@ public class IssuesExporter {
             for (Issue issue : issuesList) {
                 pw.println(issue.toString());
             }
-            
-        }catch (Exception e) {
+
+        }
+        catch (Exception e) {
             System.out.println("Error occured while writing to a file");
             e.printStackTrace();
-        }finally {
-            if(pw!=null)
-            pw.close();
+        }
+        finally {
+            if (pw != null) {
+                pw.close();
+            }
         }
     }
 
     private List<Issue> createIssueList() {
         // TODO Auto-generated method stub
-        Issue issue1 = new Issue();  
+        Issue issue1 = new Issue();
         Issue issue2 = new Issue();
         Issue issue3 = new Issue();
-        
-        User user1=new User();
+
+        User user1 = new User();
         user1.setId(123);
         user1.setLogin("harshini");
-        
-        User user2=new User();
+
+        User user2 = new User();
         user2.setId(1234);
         user2.setLogin("mitta");
-        
+
         issue1.setId(205607777);
         issue1.setNumber(3);
         issue1.setState("Closed");
@@ -83,7 +84,7 @@ public class IssuesExporter {
         issue1.setClosedAt("2017-02-06T14:51:09Z");
         issue1.setCreatedAt("2017-02-06T14:51:09Z");
         issue1.setBody("Body");
-        
+
         issue2.setId(205607558);
         issue2.setNumber(2);
         issue2.setState("Open");
@@ -93,7 +94,7 @@ public class IssuesExporter {
         issue2.setClosedAt("2017-02-07T14:51:09Z");
         issue2.setCreatedAt("2017-02-08T14:51:09Z");
         issue2.setBody("Body");
-        
+
         issue3.setId(2302895);
         issue3.setNumber(1);
         issue3.setState("Open");
@@ -103,7 +104,7 @@ public class IssuesExporter {
         issue3.setClosedAt("2017-01-07T14:51:09Z");
         issue3.setCreatedAt("2017-12-08T14:51:09Z");
         issue3.setBody("Body");
-        
+
         List<Issue> issuesList = new ArrayList<Issue>();
         issuesList.add(issue1);
         issuesList.add(issue2);
