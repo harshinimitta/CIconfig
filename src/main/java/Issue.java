@@ -1,7 +1,5 @@
 package main.java;
 
-import java.util.Date;
-
 public class Issue {
 
     private int number;
@@ -9,14 +7,13 @@ public class Issue {
     private String state;
     private String title;
     private String body;
-    private Date createdAt;
-    private Date closedAt;
+    private String createdAt;
+    private String closedAt;
     private User user;
     private User assignee;
-    User userObject;
 
     public Issue() {
-        super();
+        
     }
 
     public int getNumber() {
@@ -59,19 +56,19 @@ public class Issue {
         this.body = body;
     }
 
-    public Date getCreatedAt() {
+    public String getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Date getClosedAt() {
+    public String getClosedAt() {
         return closedAt;
     }
 
-    public void setClosedAt(Date closedAt) {
+    public void setClosedAt(String closedAt) {
         this.closedAt = closedAt;
     }
 
@@ -118,8 +115,7 @@ public class Issue {
         return "Issue [number=" + number + ", id=" + id + ", state=" + state
                 + ", title=" + title + ", body=" + body + ", createdAt="
                 + createdAt + ", closedAt=" + closedAt + ", user=" + user
-                + ", assignee=" + assignee + ", userObject="
-                + userObject.toString() + "]";
+                + ", assignee=" + assignee;
     }
 
 }
