@@ -11,7 +11,6 @@ public class IssueTest {
 
     @Test
     public void testEquals() {
-
         issue1.setId(20);
         issue2.setId(21);
         if (issue1.hashCode() == issue2.hashCode()) {
@@ -20,20 +19,20 @@ public class IssueTest {
         else {
             assertFalse(issue1.equals(issue2));
         }
-
     }
 
     @Test
     public void testHashcode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + issue1.getId();
-        assertEquals(result, issue1.hashCode());
-    }
-    
-    @Test
-    public void testToString() {
-        //assertEquals
+        int hashcode1 = issue1.hashCode();
+        int hashcode2 = issue1.hashCode();
+        assertEquals(hashcode1, hashcode2);
     }
 
+    @Test
+    public void testToString() {
+        issue1.setState("Open");
+        assertTrue(issue1.toString().contains("Open"));
+        Issue issue=new Issue();
+        assertNull(issue);
+    }
 }
