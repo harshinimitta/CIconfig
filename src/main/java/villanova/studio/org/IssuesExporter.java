@@ -3,6 +3,8 @@ package villanova.studio.org;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -10,14 +12,11 @@ import java.util.Scanner;
 public class IssuesExporter {
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
         IssuesExporter issuesExporter = new IssuesExporter();
         issuesExporter.run();
     }
 
     private void run() {
-        // TODO Auto-generated method stub
-
         try (Scanner sc = new Scanner(System.in)) {
             System.out.println("Enter your Github Username");
             String login = sc.nextLine();
@@ -30,7 +29,6 @@ public class IssuesExporter {
     }
 
     private void writeToFile(List<Issue> issuesList) {
-        // TODO Auto-generated method stub
         PrintWriter pw = null;
         File outputFile = new File("./issues.txt");
         try {
@@ -41,10 +39,9 @@ public class IssuesExporter {
             for (Issue issue : issuesList) {
                 pw.println(issue.toString());
             }
-
         }
         catch (Exception e) {
-            System.out.println("Error occured while writing to a file");
+            System.out.println("Error occurred while writing to a file");
             e.printStackTrace();
         }
         finally {
@@ -55,10 +52,11 @@ public class IssuesExporter {
     }
 
     private List<Issue> createIssueList() {
-        // TODO Auto-generated method stub
         Issue issue1 = new Issue();
         Issue issue2 = new Issue();
         Issue issue3 = new Issue();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+        List<Issue> issues = new ArrayList<Issue>();
 
         User user1 = new User();
         user1.setId(123);
@@ -74,35 +72,38 @@ public class IssuesExporter {
         issue1.setTitle("Issue1");
         issue1.setAssignee(user1);
         issue1.setUser(user1);
-        issue1.setClosedAt("2017-02-06T14:51:09Z");
-        issue1.setCreatedAt("2017-02-06T14:51:09Z");
-        issue1.setBody("Body");
 
-        issue2.setId(205607558);
-        issue2.setNumber(2);
-        issue2.setState("Open");
-        issue2.setTitle("Issue2");
-        issue2.setAssignee(user1);
-        issue2.setUser(user2);
-        issue2.setClosedAt("2017-02-07T14:51:09Z");
-        issue2.setCreatedAt("2017-02-08T14:51:09Z");
-        issue2.setBody("Body");
+        try {
+            issue1.setClosedAt(dateFormat.parse("2017-02-06T14:51:09Z"));
+            issue1.setCreatedAt(dateFormat.parse("2017-02-06T14:51:09Z"));
+            issue1.setBody("Body");
+            issue2.setId(205607558);
+            issue2.setNumber(2);
+            issue2.setState("Open");
+            issue2.setTitle("Issue2");
+            issue2.setAssignee(user1);
+            issue2.setUser(user2);
+            issue2.setClosedAt(dateFormat.parse("2017-02-07T14:51:09Z"));
+            issue2.setCreatedAt(dateFormat.parse("2017-02-08T14:51:09Z"));
+            issue2.setBody("Body");
 
-        issue3.setId(2302895);
-        issue3.setNumber(1);
-        issue3.setState("Open");
-        issue3.setTitle("Issue3");
-        issue3.setAssignee(user2);
-        issue3.setUser(user1);
-        issue3.setClosedAt("2017-01-07T14:51:09Z");
-        issue3.setCreatedAt("2017-12-08T14:51:09Z");
-        issue3.setBody("Body");
-
-        List<Issue> issuesList = new ArrayList<Issue>();
-        issuesList.add(issue1);
-        issuesList.add(issue2);
-        issuesList.add(issue3);
-        return issuesList;
+            issue3.setId(2302895);
+            issue3.setNumber(1);
+            issue3.setState("Open");
+            issue3.setTitle("Issue3");
+            issue3.setAssignee(user2);
+            issue3.setUser(user1);
+            issue3.setClosedAt(dateFormat.parse("2017-01-07T14:51:09Z"));
+            issue3.setCreatedAt(dateFormat.parse("2017-12-08T14:51:09Z"));
+            issue3.setBody("Body");
+            issues.add(issue1);
+            issues.add(issue2);
+            issues.add(issue3);
+        }
+        catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return issues;
     }
 
 }

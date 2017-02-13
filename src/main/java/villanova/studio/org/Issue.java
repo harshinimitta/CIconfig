@@ -1,5 +1,7 @@
 package villanova.studio.org;
 
+import java.util.Date;
+
 public class Issue {
 
     private int number;
@@ -7,8 +9,8 @@ public class Issue {
     private String state;
     private String title;
     private String body;
-    private String createdAt;
-    private String closedAt;
+    private Date createdAt;
+    private Date closedAt;
     private User user;
     private User assignee;
 
@@ -56,19 +58,19 @@ public class Issue {
         this.body = body;
     }
 
-    public String getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 
-    public String getClosedAt() {
+    public Date getClosedAt() {
         return closedAt;
     }
 
-    public void setClosedAt(String closedAt) {
+    public void setClosedAt(Date closedAt) {
         this.closedAt = closedAt;
     }
 
