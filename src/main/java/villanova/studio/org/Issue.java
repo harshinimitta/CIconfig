@@ -121,7 +121,7 @@ public class Issue {
         return "Issue [number=" + number + ", id=" + id + ", state=" + state
                 + ", title=" + title + ", body=" + body + ", createdAt="
                 + createdAt + ", closedAt=" + closedAt + ", user=" + user
-                + ", assignee=" + assignee;
+                + ", assignee=" + assignee + "]";
     }
 
 }
