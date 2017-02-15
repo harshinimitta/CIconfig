@@ -10,23 +10,55 @@ public class UserTest {
     User user2 = new User();
 
     @Test
-    public void testEquals() {
+    public void testEqualsWhenEqual() {
+        user1.setId(20);
+        user2.setId(20);
+        assertTrue(user1.equals(user2));
+    }
+
+    @Test
+    public void testEqualsWhenNotEqual() {
         user1.setId(20);
         user2.setId(21);
-        if (user1.hashCode() == user2.hashCode()) {
-            assertTrue(user1.equals(user2));
-        }
-        else {
-            assertFalse(user1.equals(user2));
-        }
+        assertFalse(user1.equals(user2));
+
+    }
+
+    @Test
+    public void testHashcodeRepeatedInvocation() {
+        int hashcode1 = user1.hashCode();
+        int hashcode2 = user2.hashCode();
+        assertEquals(hashcode1, hashcode2);
     }
 
     @Test
     public void testHashcode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + user2.getId();
-        assertEquals(result, user2.hashCode());
+        user1.setId(40);
+        user2.setId(40);
+        assertEquals(user1.hashCode(), user2.hashCode());
     }
 
+    @Test
+    public void testToStringDefaultUser() {
+        User defaultUser = new User();
+        String result = "User [login=null, id=0]";
+        assertEquals(result, defaultUser.toString());
+    }
+
+    @Test
+    public void testToStringPartiallyPopulated() {
+        User userPartiallyPopulated = new User();
+        userPartiallyPopulated.setLogin("Harshini");
+        String result = "User [login=Harshini, id=0]";
+        assertEquals(result, userPartiallyPopulated.toString());
+    }
+
+    @Test
+    public void testToStringFullyPopulated() {
+        User userFullyPopulated = new User();
+        userFullyPopulated.setId(10);
+        userFullyPopulated.setLogin("Harshini");
+        String result = "User [login=Harshini, id=10]";
+        assertEquals(result, userFullyPopulated.toString());
+    }
 }
