@@ -9,6 +9,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Before;
@@ -42,6 +44,8 @@ public class IssueParserTest {
         if (fileContents.length() != 0) {
             List<Issue> issues = issueParser.parseIssues(fileContents);
             assertEquals(2, issues.size());
+            SimpleDateFormat dateFormat = new SimpleDateFormat(
+                    "yyyy-MM-dd'T'HH:mm:ss'Z'");
 
             Issue issueOne = issues.get(0);
             assertEquals(205607777, issueOne.getId());
@@ -49,8 +53,8 @@ public class IssueParserTest {
             assertEquals("Json Issue", issueOne.getTitle());
             assertEquals("open", issueOne.getState());
             assertEquals("Issue3 created as part of Hw2", issueOne.getBody());
-            assertEquals("Mon Feb 06 14:56:05 EST 2017",
-                    issueOne.getCreatedAt().toString());
+            assertEquals(dateFormat.parse("2017-02-06T14:56:05Z"),
+                    issueOne.getCreatedAt());
             assertNull(issueOne.getClosedAt());
             assertEquals(19966199, issueOne.getUser().getId());
             assertEquals("harshinimitta", issueOne.getAssignee().getLogin());
@@ -61,8 +65,8 @@ public class IssueParserTest {
             assertEquals("Rest Client Issue", issueTwo.getTitle());
             assertEquals("open", issueTwo.getState());
             assertEquals("Issue2 created as part of Hw2", issueTwo.getBody());
-            assertEquals("Mon Feb 06 14:55:20 EST 2017",
-                    issueTwo.getCreatedAt().toString());
+            assertEquals(dateFormat.parse("2017-02-06T14:55:20Z"),
+                    issueTwo.getCreatedAt());
             assertNull(issueTwo.getClosedAt());
             assertEquals(19966199, issueTwo.getUser().getId());
             assertEquals("harshinimitta", issueTwo.getAssignee().getLogin());
