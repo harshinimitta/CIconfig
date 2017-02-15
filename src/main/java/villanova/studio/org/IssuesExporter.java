@@ -55,7 +55,8 @@ public class IssuesExporter {
         Issue issue1 = new Issue();
         Issue issue2 = new Issue();
         Issue issue3 = new Issue();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat(
+                "yyyy-MMdd'T'HH:mm:ss'Z'");
         List<Issue> issues = new ArrayList<Issue>();
 
         User user1 = new User();
