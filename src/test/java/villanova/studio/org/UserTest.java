@@ -23,7 +23,25 @@ public class UserTest {
         user1.setId(20);
         user2.setId(21);
         assertFalse(user1.equals(user2));
+    }
 
+    @Test
+    public void testEqualsWhenNull() {
+        user1.setId(20);
+        assertFalse(user1.equals(null));
+    }
+    
+    @Test
+    public void testEqualsWhenSameObj() {
+        user1.setId(20);
+        assertTrue(user1.equals(user1));
+    }
+    
+    @Test
+    public void testEqualsWhenDiffClass() {
+        user1.setId(20);
+        Issue issue=new Issue();
+        assertFalse(user1.equals(issue));
     }
 
     @Test
