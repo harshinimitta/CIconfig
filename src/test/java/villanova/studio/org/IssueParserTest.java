@@ -10,7 +10,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import org.junit.Before;
@@ -40,7 +39,7 @@ public class IssueParserTest {
     }
 
     @Test
-    public void testparseIssues() throws ParseException {
+    public void testParseIssues() throws ParseException {
         if (fileContents.length() != 0) {
             List<Issue> issues = issueParser.parseIssues(fileContents);
             assertEquals(2, issues.size());
