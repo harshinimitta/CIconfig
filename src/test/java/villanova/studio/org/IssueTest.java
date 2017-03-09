@@ -28,6 +28,26 @@ public class IssueTest {
         issue2.setId(21);
         assertFalse(issue1.equals(issue2));
     }
+    
+    @Test
+    public void testEqualsWhenNull() {
+        issue1.setId(20);
+        assertFalse(issue1.equals(null));
+    }
+    
+    @Test
+    public void testEqualsWhenSameObj() {
+        issue1.setId(20);
+        assertTrue(issue1.equals(issue1));
+    }
+    
+    @Test
+    public void testEqualsWhenDiffClass() {
+        issue1.setId(20);
+        User user=new User();
+        assertFalse(issue1.equals(user));
+    }
+
 
     @Test
     public void testHashcodeRepeatedInvocation() {
