@@ -22,9 +22,18 @@ public class IssuesExporter {
             String login = sc.nextLine();
             System.out.println("Enter your Github password");
             String password = sc.nextLine();
-            List<Issue> issuesList = createIssueList();
+            GitHubRestClient gitHubRestClient = new GitHubRestClient();
+            String jsonContent=gitHubRestClient.requestIssues(login, password,false);
+            System.out.println(jsonContent);
+            IssueParser issueParser = new IssueParser();
+            //List<Issue> issuesList = createIssueList();
+            List<Issue> issuesList=issueParser.parseIssues(jsonContent);
             System.out.println(issuesList.size());
             writeToFile(issuesList);
+        }
+        catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
     }
 
