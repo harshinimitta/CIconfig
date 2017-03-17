@@ -22,19 +22,37 @@ public class IssuesExporter {
             String login = sc.nextLine();
             System.out.println("Enter your Github password");
             String password = sc.nextLine();
-            GitHubRestClient gitHubRestClient = new GitHubRestClient();
-            String jsonContent=gitHubRestClient.requestIssues(login, password,false);
-            System.out.println(jsonContent);
-            IssueParser issueParser = new IssueParser();
-            //List<Issue> issuesList = createIssueList();
-            List<Issue> issuesList=issueParser.parseIssues(jsonContent);
-            System.out.println(issuesList.size());
-            writeToFile(issuesList);
+            restClientCall(login, password);
         }
         catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
+
+    private void restClientCall(String login, String password) {
+        GitHubRestClient gitHubRestClient = new GitHubRestClient();
+        String jsonContent;
+        try {
+            jsonContent = gitHubRestClient.requestIssues(login, password,
+                    false);
+            IssueParser issueParser = new IssueParser();
+            // List<Issue> issuesList = createIssueList();
+            List<Issue> openIssuesList = issueParser.parseIssues(jsonContent);
+            String jsonContentWithClosedIssues = gitHubRestClient
+                    .requestIssues(login, password, true);
+            List<Issue> closedIssuesList = issueParser
+                    .parseIssues(jsonContentWithClosedIssues);
+            List<Issue> issues = new ArrayList<Issue>();
+            issues.addAll(openIssuesList);
+            issues.addAll(closedIssuesList);
+            writeToFile(issues);
+        }
+        catch (Exception e) {
+            System.out.println("Error occurred while calling GitHubRestClient");
+            e.printStackTrace();
+        }
+
     }
 
     private void writeToFile(List<Issue> issuesList) {

@@ -23,7 +23,7 @@ import org.apache.http.util.EntityUtils;
 
 public class GitHubRestClient {
 
-    private static final String REQUEST_PARAM_TO_GET_INCLUDING_CLOSED_ISSUES = "?state=close";
+    private static final String REQUEST_PARAM_TO_GET_INCLUDING_CLOSED_ISSUES = "?state=closed";
     private static final String HOST_URI = "/repos/SoftwareStudio-Spring2017/githubapi-issues-harshinimitta/issues";
 
     public String requestIssues(String username, String password,
