@@ -127,14 +127,16 @@ public class Issue implements Comparable<Issue> {
     @Override
     public int compareTo(Issue obj) {
         // TODO Auto-generated method stub
+        int difference;
         if (this.id == obj.id) {
-            return 0;
+            difference= 0;
         }
         else if (this.id > obj.id) {
-            return 1;
+            difference = 1;
         }
         else {
-            return -1;
+            difference = -1;
         }
+        return difference;
     }
 }
