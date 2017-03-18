@@ -51,7 +51,6 @@ public class GitHubRestClient {
         }
         HttpGet httpget = new HttpGet(url);
         try {
-
             response = httpclient.execute(target, httpget, localContext);
             System.out.println(response.getStatusLine());
 
@@ -60,10 +59,10 @@ public class GitHubRestClient {
                     new InputStreamReader(entity.getContent()));
             jsonContent = reader.readLine();
             EntityUtils.consume(entity);
-
         }
         catch (ClientProtocolException e) {
-            System.out.println("Exception occurred while executing http client request");
+            System.out.println(
+                    "Exception occurred while executing http client request");
             e.printStackTrace();
         }
         catch (IOException e) {
@@ -77,7 +76,6 @@ public class GitHubRestClient {
             if (httpclient != null) {
                 httpclient.close();
             }
-
         }
         return jsonContent;
     }

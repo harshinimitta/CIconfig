@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -23,10 +24,6 @@ public class IssuesExporter {
             System.out.println("Enter your Github password");
             String password = sc.nextLine();
             restClientCall(login, password);
-        }
-        catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         }
     }
 
@@ -46,6 +43,7 @@ public class IssuesExporter {
             List<Issue> issues = new ArrayList<Issue>();
             issues.addAll(openIssuesList);
             issues.addAll(closedIssuesList);
+            Collections.sort(issues);
             writeToFile(issues);
         }
         catch (Exception e) {
