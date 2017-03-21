@@ -35,14 +35,14 @@ public class IssuesExporter {
                     false);
             IssueParser issueParser = new IssueParser();
             // List<Issue> issuesList = createIssueList();
-            List<Issue> openIssuesList = issueParser.parseIssues(jsonContent);
+            List<Issue> openIssues = issueParser.parseIssues(jsonContent);
             String jsonContentWithClosedIssues = gitHubRestClient
                     .requestIssues(login, password, true);
-            List<Issue> closedIssuesList = issueParser
+            List<Issue> closedIssues = issueParser
                     .parseIssues(jsonContentWithClosedIssues);
             List<Issue> issues = new ArrayList<Issue>();
-            issues.addAll(openIssuesList);
-            issues.addAll(closedIssuesList);
+            issues.addAll(openIssues);
+            issues.addAll(closedIssues);
             Collections.sort(issues);
             writeToFile(issues);
         }
