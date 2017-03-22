@@ -21,6 +21,5 @@ public class IssueParser {
         }.getType();
         issues = gson.fromJson(jsonContent, collectionType);
         return issues;
-
     }
 }

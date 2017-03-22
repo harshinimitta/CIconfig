@@ -14,6 +14,8 @@ public class IssueTest {
     Issue issue1 = new Issue();
     Issue issue2 = new Issue();
     Issue defaultIssue;
+    Issue sourceIssue = new Issue();
+    Issue destinationIssue = new Issue();
 
     @Test
     public void testEqualsWhenEqual() {
@@ -28,26 +30,25 @@ public class IssueTest {
         issue2.setId(21);
         assertFalse(issue1.equals(issue2));
     }
-    
+
     @Test
     public void testEqualsWhenNull() {
         issue1.setId(20);
         assertFalse(issue1.equals(null));
     }
-    
+
     @Test
     public void testEqualsWhenSameObj() {
         issue1.setId(20);
         assertTrue(issue1.equals(issue1));
     }
-    
+
     @Test
     public void testEqualsWhenDiffClass() {
         issue1.setId(20);
-        User user=new User();
+        User user = new User();
         assertFalse(issue1.equals(user));
     }
-
 
     @Test
     public void testHashcodeRepeatedInvocation() {
@@ -109,4 +110,39 @@ public class IssueTest {
         assertEquals(result, issueFullPopulated.toString());
     }
 
+    @Test
+    public void testCompareToWhenEqual() {
+        sourceIssue.setId(40);
+        destinationIssue.setId(40);
+        assertEquals(0, sourceIssue.compareTo(destinationIssue));
+    }
+
+    @Test
+    public void testCompareToWhenGreater() {
+        sourceIssue.setId(42);
+        destinationIssue.setId(40);
+        assertEquals(1, sourceIssue.compareTo(destinationIssue));
+    }
+
+    @Test
+    public void testCompareToWhenLesser() {
+        sourceIssue.setId(42);
+        destinationIssue.setId(47);
+        assertEquals(-1, sourceIssue.compareTo(destinationIssue));
+    }
+
+    @Test
+    public void testCompareToNegativeWhenEqual() {
+        sourceIssue.setId(43);
+        destinationIssue.setId(43);
+        assertFalse(sourceIssue.compareTo(destinationIssue) != 0);
+    }
+
+    @Test
+    public void testCompareToInverse() {
+        sourceIssue.setId(43);
+        destinationIssue.setId(47);
+        assertEquals(sourceIssue.compareTo(destinationIssue),
+                -destinationIssue.compareTo(sourceIssue));
+    }
 }

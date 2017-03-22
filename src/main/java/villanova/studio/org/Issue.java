@@ -2,7 +2,7 @@ package villanova.studio.org;
 
 import java.util.Date;
 
-public class Issue {
+public class Issue implements Comparable<Issue> {
 
     private int number;
     private int id;
@@ -124,4 +124,19 @@ public class Issue {
                 + ", assignee=" + assignee + "]";
     }
 
+    @Override
+    public int compareTo(Issue obj) {
+        // TODO Auto-generated method stub
+        int difference;
+        if (this.id == obj.id) {
+            difference= 0;
+        }
+        else if (this.id > obj.id) {
+            difference = 1;
+        }
+        else {
+            difference = -1;
+        }
+        return difference;
+    }
 }
