@@ -26,12 +26,14 @@ import org.apache.http.util.EntityUtils;
 
 public class GitHubRestClient {
 
+    private static final String SCHEME = "https";
+    private static final String HOSTNAME = "api.github.com";
     //private static final String REQUEST_PARAM_TO_GET_INCLUDING_CLOSED_ISSUES = "state=closed";
     private static final String HOST_URI = "/repos/SoftwareStudio-Spring2017/githubapi-issues-harshinimitta/issues";
 
     public String requestIssues(String username, String password,
             Map<String, String> paramMap) throws Exception {
-        HttpHost target = new HttpHost("api.github.com", 443, "https");
+        HttpHost target = new HttpHost(HOSTNAME, 443, SCHEME);
         CredentialsProvider credsProvider = new BasicCredentialsProvider();
         credsProvider.setCredentials(
                 new AuthScope(target.getHostName(), target.getPort()),

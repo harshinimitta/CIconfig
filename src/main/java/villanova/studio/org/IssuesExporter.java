@@ -7,7 +7,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class IssuesExporter {
@@ -32,12 +34,14 @@ public class IssuesExporter {
         String jsonContent;
         try {
             jsonContent = gitHubRestClient.requestIssues(login, password,
-                    false);
+                    null);
             IssueParser issueParser = new IssueParser();
             // List<Issue> issuesList = createIssueList();
             List<Issue> openIssues = issueParser.parseIssues(jsonContent);
+            Map<String,String> paramMap=new HashMap<String,String>();
+            paramMap.put("state", "closed");
             String jsonContentWithClosedIssues = gitHubRestClient
-                    .requestIssues(login, password, true);
+                    .requestIssues(login, password, paramMap);
             List<Issue> closedIssues = issueParser
                     .parseIssues(jsonContentWithClosedIssues);
             List<Issue> issues = new ArrayList<Issue>();
