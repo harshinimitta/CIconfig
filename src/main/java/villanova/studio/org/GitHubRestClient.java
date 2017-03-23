@@ -3,6 +3,8 @@ package villanova.studio.org;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URI;
+import java.util.Map;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
@@ -14,6 +16,7 @@ import org.apache.http.client.CredentialsProvider;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.protocol.HttpClientContext;
+import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.auth.BasicScheme;
 import org.apache.http.impl.client.BasicAuthCache;
 import org.apache.http.impl.client.BasicCredentialsProvider;
@@ -23,11 +26,11 @@ import org.apache.http.util.EntityUtils;
 
 public class GitHubRestClient {
 
-    private static final String REQUEST_PARAM_TO_GET_INCLUDING_CLOSED_ISSUES = "?state=closed";
+    //private static final String REQUEST_PARAM_TO_GET_INCLUDING_CLOSED_ISSUES = "state=closed";
     private static final String HOST_URI = "/repos/SoftwareStudio-Spring2017/githubapi-issues-harshinimitta/issues";
 
     public String requestIssues(String username, String password,
-            boolean getClosedIssues) throws Exception {
+            Map<String, String> paramMap) throws Exception {
         HttpHost target = new HttpHost("api.github.com", 443, "https");
         CredentialsProvider credsProvider = new BasicCredentialsProvider();
         credsProvider.setCredentials(
@@ -43,13 +46,15 @@ public class GitHubRestClient {
         authCache.put(target, basicAuth);
         HttpClientContext localContext = HttpClientContext.create();
         localContext.setAuthCache(authCache);
-        if (!getClosedIssues) {
-            url = HOST_URI;
+        URIBuilder uriBuilder = new URIBuilder();
+        uriBuilder.setPath(HOST_URI);
+        if (paramMap != null) {
+            for (String key : paramMap.keySet()) {
+                uriBuilder.setParameter(key, paramMap.get(key));
+            }
         }
-        else {
-            url = HOST_URI + REQUEST_PARAM_TO_GET_INCLUDING_CLOSED_ISSUES;
-        }
-        HttpGet httpget = new HttpGet(url);
+        URI uri = uriBuilder.build();
+        HttpGet httpget = new HttpGet(uri);
         try {
             response = httpclient.execute(target, httpget, localContext);
             System.out.println(response.getStatusLine());
