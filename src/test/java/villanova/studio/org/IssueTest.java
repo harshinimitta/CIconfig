@@ -145,4 +145,10 @@ public class IssueTest {
         assertEquals(sourceIssue.compareTo(destinationIssue),
                 -destinationIssue.compareTo(sourceIssue));
     }
+    
+    @Test(expected= NullPointerException.class)
+    public void testCompareToNull() {
+        sourceIssue.setId(42);
+        assertEquals(NullPointerException.class,sourceIssue.compareTo(null));
+    }
 }
