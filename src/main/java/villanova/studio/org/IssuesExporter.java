@@ -33,12 +33,11 @@ public class IssuesExporter {
         GitHubRestClient gitHubRestClient = new GitHubRestClient();
         String jsonContent;
         try {
-            jsonContent = gitHubRestClient.requestIssues(login, password,
-                    null);
+            jsonContent = gitHubRestClient.requestIssues(login, password, null);
             IssueParser issueParser = new IssueParser();
             // List<Issue> issuesList = createIssueList();
             List<Issue> openIssues = issueParser.parseIssues(jsonContent);
-            Map<String,String> paramMap=new HashMap<String,String>();
+            Map<String, String> paramMap = new HashMap<String, String>();
             paramMap.put("state", "closed");
             String jsonContentWithClosedIssues = gitHubRestClient
                     .requestIssues(login, password, paramMap);
