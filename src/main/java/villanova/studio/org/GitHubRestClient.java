@@ -28,7 +28,7 @@ public class GitHubRestClient {
 
     private static final String SCHEME = "https";
     private static final String HOSTNAME = "api.github.com";
-    //private static final String REQUEST_PARAM_TO_GET_INCLUDING_CLOSED_ISSUES = "state=closed";
+    //private static final String REQUEST_PARAM_TO_GET_INCLUDING_CLOSED_ISSUES = "state=open";
     private static final String HOST_URI_PART1 = "/repos/SoftwareStudio-Spring2017/githubapi-issues-";
 
     public String requestIssues(String username, String password,
