@@ -29,7 +29,7 @@ public class GitHubRestClient {
     private static final String SCHEME = "https";
     private static final String HOSTNAME = "api.github.com";
     //private static final String REQUEST_PARAM_TO_GET_INCLUDING_CLOSED_ISSUES = "state=closed";
-    private static final String HOST_URI_PART1 = "/repos/SoftwareStudio-Spring2017/githubapi-issues-";
+    private static final String HOST_URI_PART = "/repos/SoftwareStudio-Spring2017/githubapi-issues-";
 
     public String requestIssues(String username, String password,
             Map<String, String> paramMap) throws Exception {
@@ -49,7 +49,7 @@ public class GitHubRestClient {
         HttpClientContext localContext = HttpClientContext.create();
         localContext.setAuthCache(authCache);
         URIBuilder uriBuilder = new URIBuilder();
-        uriBuilder.setPath(HOST_URI_PART1+username+"/issues");
+        uriBuilder.setPath(HOST_URI_PART+username+"/issues");
         if (paramMap != null) {
             for (String key : paramMap.keySet()) {
                 uriBuilder.setParameter(key, paramMap.get(key));
